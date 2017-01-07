@@ -1,0 +1,30 @@
+﻿<Window x:Class="Sample.UIDataTemplate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample.UIDataTemplate"
+        mc:Ignorable="d"
+        xmlns:template="http://schemas.simplic-systems.com/2016/xaml/presentation"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Content="Refresh" Grid.Row="0" Width="100" Height="24" Click="Button_Click" />
+        <CheckBox HorizontalAlignment="Left" Content="IsInEditMode" x:Name="isInEditModeCheckBox" />
+        <template:UIContentPresenter Grid.Row="1" 
+                                     DataTemplateName="Sample01DataTemplate" x:Name="sampleContentTemplate" 
+                                     IsSelectedTemplateRequired="True"
+                                     IsInEditMode="{Binding IsChecked, ElementName=isInEditModeCheckBox,UpdateSourceTrigger=PropertyChanged}">
+            <template:UIContentPresenter.Templates>
+                <template:UITemplate TemplatePath="SampleDataTemplate.xaml">
+                    <template:UITemplate.Selector>
+                        <template:ByTypeSelector DataType="{x:Type local:SampleViewModel}" />
+                    </template:UITemplate.Selector>
+                </template:UITemplate>
+            </template:UIContentPresenter.Templates>
+        </template:UIContentPresenter>
+    </Grid>
+</Window>

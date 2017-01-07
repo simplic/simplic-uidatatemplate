@@ -1,0 +1,26 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:template="http://schemas.simplic-systems.com/2016/xaml/presentation">
+    <DataTemplate x:Key="Sample01DataTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Test 456" />
+            <Button Content="Test" Grid.Row="1" />
+            <GroupBox Grid.Row="2" Header="Inner-Template">
+                <template:UIContentPresenter Grid.Row="1" 
+                    DataTemplateName="SampleInner01DataTemplate" x:Name="sampleInnerContentTemplate" 
+                                     IsSelectedTemplateRequired="False"
+                                     IsInEditMode="{Binding IsChecked, ElementName=isInEditModeCheckBox,UpdateSourceTrigger=PropertyChanged}">
+                    <template:UIContentPresenter.Templates>
+                        <template:UITemplate TemplatePath="InnerSampleDataTemplate.xaml" />
+                    </template:UIContentPresenter.Templates>
+                </template:UIContentPresenter>
+            </GroupBox>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

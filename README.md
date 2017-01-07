@@ -7,13 +7,13 @@ Contains a set of libraries to make your application customizable using wpf data
 
 All required xaml namespaces can be included using the following url:
 
-```
+```xml
 xmlns:template="http://schemas.simplic-systems.com/2016/xaml/presentation"
 ```
 
 Using it in a WPF window could look like this:
 
-```
+```xml
 <Window x:Class="Sample.UIDataTemplate.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

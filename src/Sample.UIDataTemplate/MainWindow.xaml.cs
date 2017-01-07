@@ -26,6 +26,7 @@ namespace Sample.UIDataTemplate
             UITemplateManager.LoaderFactories.Add(new FSInvokerFactory());
             UITemplateManager.InvokerFactories.Add(new SampleInvokerFactory());
             UITemplateManager.EditorFactory = new EditorFactory();
+            UITemplateManager.DynamicResolverFactory = new DynamicResolverFactory();
 
             InitializeComponent();
 
@@ -35,6 +36,22 @@ namespace Sample.UIDataTemplate
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             sampleContentTemplate.RefreshDataTemplate();
+        }
+    }
+
+    public class DynamicResolverFactory : ITemplateDynamicResolverFactory
+    {
+        public ITemplateDynamicResolver Create()
+        {
+            return new SampleResolver();
+        }
+    }
+
+    public class SampleResolver : ITemplateDynamicResolver
+    {
+        public IList<UITemplate> ResolveDynamicTemplates(string ns, string dateTemplateName)
+        {
+            return null;
         }
     }
 

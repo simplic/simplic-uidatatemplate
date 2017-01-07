@@ -29,7 +29,7 @@ namespace Simplic.UIDataTemplate
             this.invokers = invokers;
             this.loaders = loaders;
         }
-        
+
         /// <summary>
         /// Search for the content presenter container that belongs to a <see cref="ContentPresenter"/>
         /// </summary>
@@ -63,7 +63,7 @@ namespace Simplic.UIDataTemplate
         /// <returns></returns>
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-           var presenter = SearchCustomContentPresenter(container);
+            var presenter = SearchCustomContentPresenter(container);
 
             if (presenter != null)
             {
@@ -82,7 +82,9 @@ namespace Simplic.UIDataTemplate
                     var resolver = UITemplateManager.DynamicResolverFactory.Create();
 
                     // Add all dynamically resolved templates
-                    templates.AddRange(resolver.ResolveDynamicTemplates(presenter.GetType().Namespace, presenter.DataTemplateName));
+                    var tmpls = resolver.ResolveDynamicTemplates(presenter.GetType().Namespace, presenter.DataTemplateName);
+                    if (tmpls != null)
+                        templates.AddRange(tmpls);
                 }
 
                 // Find all templates that are selectable

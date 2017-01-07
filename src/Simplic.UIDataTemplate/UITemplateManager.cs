@@ -15,6 +15,8 @@ namespace Simplic.UIDataTemplate
         private static IList<ITemplateInvokerFactory> invokerFactories = new List<ITemplateInvokerFactory>();
         private static IList<ITemplateLoaderFactory> loaderFactories = new List<ITemplateLoaderFactory>();
         private static ITemplateEditorFactory editorFactory;
+        private static ITemplateDynamicResolverFactory dynamicResolverFactory;
+
         /// <summary>
         /// Gets an instance of all available invoker factories
         /// </summary>
@@ -50,6 +52,22 @@ namespace Simplic.UIDataTemplate
             set
             {
                 editorFactory = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the factory that creates <see cref="ITemplateDynamicResolver"/> for loading dynamic templates
+        /// </summary>
+        public static ITemplateDynamicResolverFactory DynamicResolverFactory
+        {
+            get
+            {
+                return dynamicResolverFactory;
+            }
+
+            set
+            {
+                dynamicResolverFactory = value;
             }
         }
     }

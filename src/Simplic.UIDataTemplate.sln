@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{1515A491-87CC-4EB7-BDB0-36468DE4BFBB}"
 	ProjectSection(SolutionItems) = preProject
 		Sample\InnerSampleDataTemplate.xaml = Sample\InnerSampleDataTemplate.xaml
+		..\README.md = ..\README.md
 		Sample\SampleDataTemplate.xaml = Sample\SampleDataTemplate.xaml
 	EndProjectSection
 EndProject

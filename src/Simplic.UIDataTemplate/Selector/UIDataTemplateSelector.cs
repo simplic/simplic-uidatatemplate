@@ -70,6 +70,21 @@ namespace Simplic.UIDataTemplate
                 // Contains all possible UITemplates
                 UITemplate template = null;
 
+                if (presenter.Templates == null)
+                    throw new Exception($"Templates list can not be null. UIContentPresenter: {presenter.Name ?? "<No name set>"}");
+
+                // Copy template list
+                var templates = presenter.Templates.OfType<UITemplate>().ToList();
+
+                // Add dynamic templates
+                if (UITemplateManager.DynamicResolverFactory != null)
+                {
+                    var resolver = UITemplateManager.DynamicResolverFactory.Create();
+
+                    // Add all dynamically resolved templates
+                    templates.AddRange(resolver.ResolveDynamicTemplates(presenter.GetType().Namespace, presenter.DataTemplateName));
+                }
+
                 // Find all templates that are selectable
                 if (presenter.Templates != null)
                 {

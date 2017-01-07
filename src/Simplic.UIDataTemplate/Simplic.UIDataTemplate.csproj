@@ -47,6 +47,8 @@
     <Compile Include="Editor\ITemplateEditor.cs" />
     <Compile Include="Editor\ITemplateEditorFactory.cs" />
     <Compile Include="Invoker\ITemplateInvokerFactory.cs" />
+    <Compile Include="Loader\ITemplateDynamicResolver.cs" />
+    <Compile Include="Loader\ITemplateDynamicResolverFactory.cs" />
     <Compile Include="Loader\ITemplateLoaderFactory.cs" />
     <Compile Include="Loader\Implementation\EmbeddedResourceTemplateLoader.cs" />
     <Compile Include="Loader\Implementation\FileSystemTemplateLoader.cs" />

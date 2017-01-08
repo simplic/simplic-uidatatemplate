@@ -16,6 +16,7 @@ namespace Simplic.UIDataTemplate
         private static IList<ITemplateLoaderFactory> loaderFactories = new List<ITemplateLoaderFactory>();
         private static ITemplateEditorFactory editorFactory;
         private static ITemplateDynamicResolverFactory dynamicResolverFactory;
+        private static ITemplateLoadExceptionHandler loadExceptionHandler;
 
         /// <summary>
         /// Gets an instance of all available invoker factories
@@ -68,6 +69,22 @@ namespace Simplic.UIDataTemplate
             set
             {
                 dynamicResolverFactory = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the loader exception handler
+        /// </summary>
+        public static ITemplateLoadExceptionHandler LoadExceptionHandler
+        {
+            get
+            {
+                return loadExceptionHandler;
+            }
+
+            set
+            {
+                loadExceptionHandler = value;
             }
         }
     }

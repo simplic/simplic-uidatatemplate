@@ -115,15 +115,39 @@ namespace Simplic.UIDataTemplate
                         {
                             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(code)))
                             {
-                                ResourceDictionary resourceDict = (ResourceDictionary)System.Windows.Markup.XamlReader.Load(stream);
-
-                                if (resourceDict != null)
+                                try
                                 {
-                                    if (resourceDict.Contains(presenter.DataTemplateName))
+                                    ResourceDictionary resourceDict = (ResourceDictionary)System.Windows.Markup.XamlReader.Load(stream);
+
+                                    if (resourceDict != null)
                                     {
-                                        this.loader = loader;
-                                        presenter.SelectedTemplate = template;
-                                        return (DataTemplate)resourceDict[presenter.DataTemplateName];
+                                        if (resourceDict.Contains(presenter.DataTemplateName))
+                                        {
+                                            this.loader = loader;
+                                            presenter.SelectedTemplate = template;
+                                            return (DataTemplate)resourceDict[presenter.DataTemplateName];
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    if (UITemplateManager.LoadExceptionHandler != null)
+                                    {
+                                        // Handle excetpion
+                                        presenter.Dispatcher.BeginInvoke(new Action(() =>
+                                        {
+                                            // Set loader to be able to fix the template error using the editor
+                                            this.loader = loader;
+                                            presenter.SelectedTemplate = template;
+                                            if (!UITemplateManager.LoadExceptionHandler.Handle(ex))
+                                            {
+                                                throw ex;
+                                            }
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        throw ex;
                                     }
                                 }
                             }

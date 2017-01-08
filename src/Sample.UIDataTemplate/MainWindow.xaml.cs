@@ -27,7 +27,7 @@ namespace Sample.UIDataTemplate
             UITemplateManager.InvokerFactories.Add(new SampleInvokerFactory());
             UITemplateManager.EditorFactory = new EditorFactory();
             UITemplateManager.DynamicResolverFactory = new DynamicResolverFactory();
-
+            UITemplateManager.LoadExceptionHandler = new ExceptionHandler();
             InitializeComponent();
 
             this.DataContext = new SampleViewModel();
@@ -36,6 +36,16 @@ namespace Sample.UIDataTemplate
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             sampleContentTemplate.RefreshDataTemplate();
+        }
+    }
+
+    public class ExceptionHandler : ITemplateLoadExceptionHandler
+    {
+        public bool Handle(Exception ex)
+        {
+            MessageBox.Show($"Exception occured: {ex}", "Exception occured", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            return true;
         }
     }
 

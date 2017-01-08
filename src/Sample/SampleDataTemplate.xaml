@@ -8,10 +8,16 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Test 456" />
-            <Button Content="Test" Grid.Row="1" />
-            <GroupBox Grid.Row="2" Header="Inner-Template">
+            <Button Content="Test" Grid.Row="1" HorizontalAlignment="Left" />
+            <TabControl Grid.Row="2">
+                <TabItem Header="Tab01" />
+                <TabItem Header="Tab02" />
+                <TabItem Header="Tab03" />
+            </TabControl>
+            <GroupBox Grid.Row="3" Header="Inner-Template">
                 <template:UIContentPresenter Grid.Row="1" 
                     DataTemplateName="SampleInner01DataTemplate" x:Name="sampleInnerContentTemplate" 
                                      IsSelectedTemplateRequired="False"

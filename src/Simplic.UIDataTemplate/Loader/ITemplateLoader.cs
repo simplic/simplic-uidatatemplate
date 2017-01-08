@@ -24,5 +24,13 @@ namespace Simplic.UIDataTemplate
         /// <param name="path">Path to the template</param>
         /// <param name="code">Template code</param>
         void SaveTemplate(string path, string code);
+
+        /// <summary>
+        /// Gets whether the loaded code is readonly
+        /// </summary>
+        bool IsReadOnly
+        {
+            get;
+        }
     }
 }

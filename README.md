@@ -30,9 +30,40 @@ Using it in a WPF window could look like this:
 
 ### Getting started with a simple template
 
-### Using selector
+#### Setup an UIContentPresenter
 
-### Add a template editor
+The following sample shows, how to define an area which will be filled with a template:
+
+```xml
+<template:UIContentPresenter DataTemplateName="Sample01DataTemplate" x:Name="sampleContentTemplate" 
+
+</template:UIContentPresenter>
+```
+
+This is an empty content presenter which can be filled with pre defined templates or templates that
+are loaded at runtime.
+
+#### Add UITemplates
+
+To be able to show a datatemplate that gets presented, we need to define it in the list of templates:
+
+```xml
+<template:UIContentPresenter DataTemplateName="Sample01DataTemplate" x:Name="sampleContentTemplate" 
+    <template:UIContentPresenter.Templates>
+        <template:UITemplate TemplatePath="SampleDataTemplate.xaml" />
+    </template:UIContentPresenter.Templates>
+</template:UIContentPresenter>
+```
+
+#### Add UITemplates using Selector
+
+#### Add a template loader
+
+#### Add a dynamic template resolver
+
+#### Add a custom UITemplate Selector
+
+#### Add a template editor
 
 ### Creator and contributor
 

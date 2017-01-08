@@ -42,6 +42,12 @@ namespace Simplic.UIDataTemplate
         /// </summary>
         public static readonly DependencyProperty IsInEditModeProperty =
             DependencyProperty.Register("IsInEditMode", typeof(bool), typeof(UIContentPresenter), new PropertyMetadata(false, IsInEditorChanged));
+
+        /// <summary>
+        /// Contains whether to show default message boxes
+        /// </summary>
+        public static readonly DependencyProperty UseDefaultMessageBoxPromptingProperty =
+            DependencyProperty.Register("UseDefaultMessageBoxPrompting", typeof(bool), typeof(UIContentPresenter), new PropertyMetadata(true));
         #endregion
 
         #region Static Event Handler
@@ -156,16 +162,26 @@ namespace Simplic.UIDataTemplate
         {
             if (UITemplateManager.EditorFactory == null)
             {
-                MessageBox.Show(Properties.Resource.NoEditorFactoryText, 
-                    Properties.Resource.NoEditorFactoryTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                if (UseDefaultMessageBoxPrompting)
+                {
+                    MessageBox.Show(Properties.Resource.NoEditorFactoryText,
+                        Properties.Resource.NoEditorFactoryTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                else
+                {
+                    throw new Exception(Properties.Resource.NoEditorFactoryText);
+                }
             }
 
             if (selector.Loader.IsReadOnly)
             {
-                MessageBox.Show(Properties.Resource.TemplateFromReadOnlySource, 
+                if (UseDefaultMessageBoxPrompting)
+                {
+                    MessageBox.Show(Properties.Resource.TemplateFromReadOnlySource,
                     Properties.Resource.TemplateFromReadOnlySourceTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                    return;
+                }
             }
 
             var editor = UITemplateManager.EditorFactory.Create();
@@ -243,6 +259,15 @@ namespace Simplic.UIDataTemplate
         {
             get { return (bool)GetValue(IsInEditModeProperty); }
             set { SetValue(IsInEditModeProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to use default message boxes
+        /// </summary>
+        public bool UseDefaultMessageBoxPrompting
+        {
+            get { return (bool)GetValue(UseDefaultMessageBoxPromptingProperty); }
+            set { SetValue(UseDefaultMessageBoxPromptingProperty, value); }
         }
         #endregion
     }

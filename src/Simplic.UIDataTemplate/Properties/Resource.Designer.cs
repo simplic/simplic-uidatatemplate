@@ -86,5 +86,23 @@ namespace Simplic.UIDataTemplate.Properties {
                 return ResourceManager.GetString("NoEditorFactoryTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The template can not be edited, because it is loaded from a read only source..
+        /// </summary>
+        internal static string TemplateFromReadOnlySource {
+            get {
+                return ResourceManager.GetString("TemplateFromReadOnlySource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source is read only.
+        /// </summary>
+        internal static string TemplateFromReadOnlySourceTitle {
+            get {
+                return ResourceManager.GetString("TemplateFromReadOnlySourceTitle", resourceCulture);
+            }
+        }
     }
 }

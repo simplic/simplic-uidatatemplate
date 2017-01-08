@@ -156,7 +156,15 @@ namespace Simplic.UIDataTemplate
         {
             if (UITemplateManager.EditorFactory == null)
             {
-                MessageBox.Show(Properties.Resource.NoEditorFactoryText, Properties.Resource.NoEditorFactoryTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Properties.Resource.NoEditorFactoryText, 
+                    Properties.Resource.NoEditorFactoryTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (selector.Loader.IsReadOnly)
+            {
+                MessageBox.Show(Properties.Resource.TemplateFromReadOnlySource, 
+                    Properties.Resource.TemplateFromReadOnlySourceTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

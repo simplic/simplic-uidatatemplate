@@ -126,4 +126,10 @@
   <data name="NoEditorFactoryTitle" xml:space="preserve">
     <value>No editor factory</value>
   </data>
+  <data name="TemplateFromReadOnlySource" xml:space="preserve">
+    <value>The template can not be edited, because it is loaded from a read only source.</value>
+  </data>
+  <data name="TemplateFromReadOnlySourceTitle" xml:space="preserve">
+    <value>Source is read only</value>
+  </data>
 </root>

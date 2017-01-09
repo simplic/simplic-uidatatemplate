@@ -200,7 +200,7 @@ namespace Simplic.UIDataTemplate
             {
                 foreach (var invoker in invokers)
                 {
-                    invoker.Load(e.VisualAdded);
+                    invoker.Load(selector.Loader, DataTemplateName, SelectedTemplate.TemplatePath, e.VisualAdded);
                 }
             }
 

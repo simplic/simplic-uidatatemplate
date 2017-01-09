@@ -91,7 +91,7 @@ namespace Sample.UIDataTemplate
 
     public class SampleInvoker : ITemplateInvoker
     {
-        public void Load(DependencyObject content)
+        public void Load(ITemplateLoader loader, string templateName, string templatePath, DependencyObject content)
         {
             if (content is Label)
             {

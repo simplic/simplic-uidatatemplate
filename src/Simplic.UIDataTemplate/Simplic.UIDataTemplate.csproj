@@ -55,6 +55,7 @@
     <Compile Include="Loader\Implementation\FileSystemTemplateLoader.cs" />
     <Compile Include="Invoker\ITemplateInvoker.cs" />
     <Compile Include="Loader\ITemplateLoader.cs" />
+    <Compile Include="Loader\LoaderResult.cs" />
     <Compile Include="Presenter\ContentChangedEventArgs.cs" />
     <Compile Include="Presenter\NotifiableContentPresenter.cs" />
     <Compile Include="Presenter\UIContentPresenter.cs" />

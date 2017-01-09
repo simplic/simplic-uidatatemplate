@@ -27,12 +27,13 @@ namespace Simplic.UIDataTemplate
         /// <summary>
         /// Search a template in the list of assemblies and returns its code
         /// </summary>
+        /// <param name="templateName">DateTemplate name</param>
         /// <param name="path">Absolute path to the template</param>
         /// <returns>Code of the template if found, else null</returns>
-        public string GetTemplate(string path)
+        public LoaderResult GetTemplate(string templateName, string path)
         {
             if (assemblies == null)
-                return "";
+                return null;
 
             foreach (var asm in assemblies)
             {
@@ -42,21 +43,26 @@ namespace Simplic.UIDataTemplate
                     {
                         if (stm != null)
                         {
-                            return new StreamReader(stm).ReadToEnd();
+                            return new LoaderResult()
+                            {
+                                Code = new StreamReader(stm).ReadToEnd(),
+                                Path = path
+                            };
                         }
                     }
                 }
             }
 
-            return null;   
+            return null;
         }
 
         /// <summary>
         /// !Saving to embedded resources is not allowed
         /// </summary>
+        /// <param name="templateName">DateTemplate name</param>
         /// <param name="path">-</param>
         /// <param name="code">-</param>
-        public void SaveTemplate(string path, string code)
+        public void SaveTemplate(string templateName, string path, string code)
         {
 
         }
@@ -70,6 +76,15 @@ namespace Simplic.UIDataTemplate
             {
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the truely loaded path
+        /// </summary>
+        public string Path
+        {
+            get;
+            set;
         }
     }
 }

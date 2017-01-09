@@ -16,7 +16,7 @@ namespace Simplic.UIDataTemplate
         /// Template is laoded
         /// </summary>
         /// <param name="content">Freshly loaded content</param>
-        void Load(DependencyObject content);
+        void Load(ITemplateLoader loader, string templateName, string templatePath, DependencyObject content);
 
         /// <summary>
         /// Template is unloaded

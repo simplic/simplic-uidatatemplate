@@ -14,16 +14,18 @@ namespace Simplic.UIDataTemplate
         /// <summary>
         /// Returns the xaml template code
         /// </summary>
+        /// <param name="templateName">Name of the DataTemplate</param>
         /// <param name="path">Path to the template</param>
         /// <returns>Null if the template was not found, else the template code</returns>
-        string GetTemplate(string path);
+        LoaderResult GetTemplate(string templateName, string path);
 
         /// <summary>
         /// Save ui template
         /// </summary>
+        /// <param name="templateName">Name of the DataTemplate</param>
         /// <param name="path">Path to the template</param>
         /// <param name="code">Template code</param>
-        void SaveTemplate(string path, string code);
+        void SaveTemplate(string templateName, string path, string code);
 
         /// <summary>
         /// Gets whether the loaded code is readonly

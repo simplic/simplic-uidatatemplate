@@ -110,10 +110,10 @@ namespace Simplic.UIDataTemplate
                 {
                     foreach (var loader in loaders)
                     {
-                        var code = loader.GetTemplate(template.TemplatePath);
-                        if (!string.IsNullOrWhiteSpace(code))
+                        var result = loader.GetTemplate(presenter.DataTemplateName, template.TemplatePath);
+                        if (result != null && !string.IsNullOrWhiteSpace(result.Code))
                         {
-                            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(code)))
+                            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(result.Code)))
                             {
                                 try
                                 {

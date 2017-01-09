@@ -23,6 +23,7 @@ namespace Sample.UIDataTemplate
         private string path;
         private ITemplateLoader loader;
         private UIContentPresenter presenter;
+        private LoaderResult result;
 
         public SampleEditor()
         {
@@ -35,14 +36,19 @@ namespace Sample.UIDataTemplate
             this.loader = loader;
             this.presenter = presenter;
 
-            codeTextBox.Text = loader.GetTemplate(path);
+            result = loader.GetTemplate(presenter.DataTemplateName, path);
+
+            if (result != null)
+            {
+                codeTextBox.Text = result.Code;
+            }
 
             this.Show();
         }
 
         private void OnSaveButtonClick(object sender, RoutedEventArgs e)
         {
-            loader.SaveTemplate(path, codeTextBox.Text);
+            loader.SaveTemplate(presenter.DataTemplateName, result.Path, codeTextBox.Text);
             presenter.RefreshDataTemplate();
         }
     }

@@ -26,15 +26,20 @@ namespace Simplic.UIDataTemplate
         /// <summary>
         /// Try to load a template from the filesystem
         /// </summary>
+        /// <param name="templateName">DateTemplate name</param>
         /// <param name="path">Relative path to the file</param>
         /// <returns>The code of the template if found, else null</returns>
-        public string GetTemplate(string path)
+        public LoaderResult GetTemplate(string templateName, string path)
         {
-            var fullPath = Path.Combine(baseDirectory, path);
+            var fullPath = System.IO.Path.Combine(baseDirectory, path);
 
             if (File.Exists(fullPath))
             {
-                return File.ReadAllText(fullPath);
+                return new LoaderResult()
+                {
+                    Path = fullPath,
+                    Code = File.ReadAllText(fullPath)
+                };
             }
 
             return null;
@@ -43,9 +48,10 @@ namespace Simplic.UIDataTemplate
         /// <summary>
         /// Save template code in a file on the filesystem
         /// </summary>
-        /// <param name="path">Relative path to the template code</param>
+        /// <param name="templateName">DateTemplate name</param>
+        /// <param name="path">Full path to the template</param>
         /// <param name="code">Code which should be saved</param>
-        public void SaveTemplate(string path, string code)
+        public void SaveTemplate(string templateName, string path, string code)
         {
             var fullPath = Path.Combine(baseDirectory, path);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -101,7 +102,7 @@ namespace Simplic.UIDataTemplate
                     }
                 }
 
-                if (presenter.IsSelectedTemplateRequired && template == null)
+                if (presenter.IsSelectedTemplateRequired && template == null && !DesignerProperties.GetIsInDesignMode(presenter))
                 {
                     throw new Exception($"A template is required for the given UIContentPresenter, but there is no selectable uitemplate {presenter.Name ?? "<No name set>"}");
                 }

@@ -35,7 +35,7 @@ namespace Sample.UIDataTemplate
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            sampleContentTemplate.RefreshDataTemplate();
+            // sampleContentTemplate.RefreshDataTemplate();
         }
     }
 

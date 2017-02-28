@@ -2,6 +2,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"> 
     <DataTemplate x:Key="SampleInner01DataTemplate">
-        <Label Content="Test 1234 :: 4321 Test" />
+        <Label Content="Vorname" />
     </DataTemplate>
 </ResourceDictionary>

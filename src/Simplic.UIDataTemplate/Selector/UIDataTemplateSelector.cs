@@ -111,6 +111,18 @@ namespace Simplic.UIDataTemplate
                 {
                     foreach (var loader in loaders)
                     {
+                        var rd = Cache.TemplateCache.Get(presenter.DataTemplateName, template.TemplatePath);
+
+                        if (rd != null)
+                        {
+                            if (rd.Contains(presenter.DataTemplateName))
+                            {
+                                this.loader = loader;
+                                presenter.SelectedTemplate = template;
+                                return (DataTemplate)rd[presenter.DataTemplateName];
+                            }
+                        }
+
                         var result = loader.GetTemplate(presenter.DataTemplateName, template.TemplatePath);
                         if (result != null && !string.IsNullOrWhiteSpace(result.Code))
                         {
@@ -118,7 +130,8 @@ namespace Simplic.UIDataTemplate
                             {
                                 try
                                 {
-                                    ResourceDictionary resourceDict = (ResourceDictionary)System.Windows.Markup.XamlReader.Load(stream);
+                                    var resourceDict = (ResourceDictionary)System.Windows.Markup.XamlReader.Load(stream);
+                                    Cache.TemplateCache.Add(presenter.DataTemplateName, template.TemplatePath, resourceDict);
 
                                     if (resourceDict != null)
                                     {

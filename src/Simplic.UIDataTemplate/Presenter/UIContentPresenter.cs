@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -12,7 +13,7 @@ namespace Simplic.UIDataTemplate
     /// <summary>
     /// Custom content presenter, which implements <see cref="UIDataTemplateSelector"/>
     /// </summary>
-    public class UIContentPresenter : ContentControl, IDisposable
+    public class UIContentPresenter : UserControl, IDisposable
     {
         #region DependencyProperties
         /// <summary>
@@ -30,7 +31,7 @@ namespace Simplic.UIDataTemplate
         // Using a DependencyProperty as the backing store for SelectedTemplate.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedTemplateProperty =
             DependencyProperty.Register("SelectedTemplate", typeof(UITemplate), typeof(UIContentPresenter), new PropertyMetadata(null));
-        
+
         /// <summary>
         /// DataTemplate name (in the template)
         /// </summary>
@@ -84,6 +85,8 @@ namespace Simplic.UIDataTemplate
         /// </summary>
         public UIContentPresenter()
         {
+            SetValue(TemplatesProperty, new List<UITemplate>());
+
             loaders = UITemplateManager.LoaderFactories.Select(item => item.Create()).ToList();
             invokers = UITemplateManager.InvokerFactories.Select(item => item.Create()).ToList();
 
@@ -95,6 +98,11 @@ namespace Simplic.UIDataTemplate
                 VerticalAlignment = VerticalAlignment.Stretch,
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 ContentTemplateSelector = selector
+            };
+                        
+            this.DataContextChanged += (s, e) => 
+            {
+                presenter.Content = e.NewValue;    
             };
 
             presenter.ContentChanged += PresenterContentChanged;
@@ -130,7 +138,7 @@ namespace Simplic.UIDataTemplate
 
             grid.Children.Add(presenter);
             grid.Children.Add(editButton);
-            
+
             // Set the grid as the content of the current control
             this.Content = grid;
         }
@@ -143,7 +151,7 @@ namespace Simplic.UIDataTemplate
         {
             presenter.ContentChanged -= PresenterContentChanged;
         }
-        
+
         /// <summary>
         /// Refresh the content-presenter template
         /// </summary>
@@ -211,6 +219,11 @@ namespace Simplic.UIDataTemplate
                 {
                     invoker.Unload(e.VisualRemoved);
                 }
+            }
+
+            if (e.VisualAdded is FrameworkElement)
+            {
+                //(e.VisualAdded as FrameworkElement).DataContext = this.DataContext;
             }
         }
         #endregion

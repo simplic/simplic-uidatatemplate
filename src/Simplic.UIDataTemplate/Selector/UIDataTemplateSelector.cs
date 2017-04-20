@@ -78,20 +78,25 @@ namespace Simplic.UIDataTemplate
                 var templates = presenter.Templates.OfType<UITemplate>().ToList();
 
                 // Add dynamic templates
-                if (UITemplateManager.DynamicResolverFactory != null)
+                if (UITemplateManager.DynamicResolverFactories != null)
                 {
-                    var resolver = UITemplateManager.DynamicResolverFactory.Create();
-
-                    // Add all dynamically resolved templates
-                    var tmpls = resolver.ResolveDynamicTemplates(presenter.GetType().Namespace, presenter.DataTemplateName);
-                    if (tmpls != null)
-                        templates.AddRange(tmpls);
+                    foreach (var factory in UITemplateManager.DynamicResolverFactories)
+                    {
+                        var resolver = factory.Create(presenter.GetType().Namespace, presenter.DataTemplateName);
+                        if (resolver != null)
+                        {
+                            // Add all dynamically resolved templates
+                            var tmpls = resolver.ResolveDynamicTemplates(presenter.GetType().Namespace, presenter.DataTemplateName);
+                            if (tmpls != null)
+                                templates.AddRange(tmpls);
+                        }
+                    }
                 }
-
+                
                 // Find all templates that are selectable
                 if (presenter.Templates != null)
                 {
-                    foreach (var _template in presenter.Templates.OfType<UITemplate>())
+                    foreach (var _template in templates)
                     {
                         // Select a template if it has no selector and there is no template set yet
                         // or select a template if there is already a selected template but that has not selector

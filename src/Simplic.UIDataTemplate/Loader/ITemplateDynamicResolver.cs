@@ -15,8 +15,8 @@ namespace Simplic.UIDataTemplate
         /// Gets a list of available dynamic templates for the given dataTemplateName
         /// </summary>
         /// <param name="ns">Namespace of the root control</param>
-        /// <param name="dateTemplateName">Name of the template</param>
+        /// <param name="dataTemplateName">Name of the template</param>
         /// <returns>List of templates or null</returns>
-        IList<UITemplate> ResolveDynamicTemplates(string ns, string dateTemplateName);
+        IList<UITemplate> ResolveDynamicTemplates(string ns, string dataTemplateName);
     }
 }

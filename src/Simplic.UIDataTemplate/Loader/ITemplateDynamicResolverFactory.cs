@@ -8,7 +8,9 @@
         /// <summary>
         /// Create a new instance of an <see cref="ITemplateDynamicResolver"/>
         /// </summary>
+        /// <param name="ns">Namespace of the root control</param>
+        /// <param name="dataTemplateName">Name of the template</param>
         /// <returns>New instance of <see cref="ITemplateDynamicResolver"/></returns>
-        ITemplateDynamicResolver Create();
+        ITemplateDynamicResolver Create(string ns, string dataTemplateName);
     }
 }

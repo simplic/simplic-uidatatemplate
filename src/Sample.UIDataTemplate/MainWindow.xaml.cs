@@ -26,7 +26,7 @@ namespace Sample.UIDataTemplate
             UITemplateManager.LoaderFactories.Add(new FSInvokerFactory());
             UITemplateManager.InvokerFactories.Add(new SampleInvokerFactory());
             UITemplateManager.EditorFactory = new EditorFactory();
-            UITemplateManager.DynamicResolverFactory = new DynamicResolverFactory();
+            UITemplateManager.DynamicResolverFactories.Add(new DynamicResolverFactory());
             UITemplateManager.LoadExceptionHandler = new ExceptionHandler();
             InitializeComponent();
 
@@ -51,7 +51,7 @@ namespace Sample.UIDataTemplate
 
     public class DynamicResolverFactory : ITemplateDynamicResolverFactory
     {
-        public ITemplateDynamicResolver Create()
+        public ITemplateDynamicResolver Create(string ns, string dtn)
         {
             return new SampleResolver();
         }

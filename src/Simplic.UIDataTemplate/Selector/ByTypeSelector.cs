@@ -36,7 +36,8 @@ namespace Simplic.UIDataTemplate
             if (viewModel.GetType() == DataType)
                 return true;
 
-            return viewModel.GetType().IsAssignableFrom(DataType);
+            // return viewModel.GetType().IsAssignableFrom(DataType);
+            return DataType.IsAssignableFrom(viewModel.GetType());
         }
 
         /// <summary>

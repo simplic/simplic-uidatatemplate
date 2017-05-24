@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Simplic.UIDataTemplate</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>SIMPLIC GmbH</authors>
+    <owners>SIMPLIC GmbH</owners>
+    <licenseUrl>https://github.com/simplic-systems/simplic-utilities/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/simplic-systems/simplic-utilities</projectUrl>
+    <iconUrl>https://avatars3.githubusercontent.com/u/14359329?v=3&amp;s=400</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simplic.UIDataTemplate</description>
+    <releaseNotes>-</releaseNotes>
+    <copyright>Copyright SIMPLIC GmbH 2017</copyright>    
+  </metadata>
+  
+</package>

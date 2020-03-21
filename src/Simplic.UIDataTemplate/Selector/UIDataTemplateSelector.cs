@@ -87,6 +87,7 @@ namespace Simplic.UIDataTemplate
                         {
                             // Add all dynamically resolved templates
                             var tmpls = resolver.ResolveDynamicTemplates(presenter.GetType().Namespace, presenter.DataTemplateName);
+                            
                             if (tmpls != null)
                                 templates.AddRange(tmpls);
                         }
@@ -94,7 +95,7 @@ namespace Simplic.UIDataTemplate
                 }
                 
                 // Find all templates that are selectable
-                if (presenter.Templates != null)
+                if (templates != null)
                 {
                     foreach (var _template in templates)
                     {
@@ -102,7 +103,7 @@ namespace Simplic.UIDataTemplate
                         // or select a template if there is already a selected template but that has not selector
                         if ((_template.Selector == null && template == null) || (template != null && template.Selector == null))
                             template = _template;
-                        else if (_template.Selector != null && _template.Selector.SelectTemplate(_template, presenter.DataContext))
+                        else if (_template.Selector != null && _template.Selector.SelectTemplate(_template, presenter.DataContext))                        
                             template = _template;
                     }
                 }
